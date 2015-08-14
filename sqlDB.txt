@@ -1,0 +1,39 @@
+CREATE TABLE [dbo].[User] (
+    [Uid]      VARCHAR (50)  NOT NULL,
+    [Uname]    VARCHAR (50)  NOT NULL,
+    [Uaddress] VARCHAR (100) NOT NULL,
+    [Ugender]  VARCHAR (10)  NOT NULL,
+    [NIC]      VARCHAR (20)  NULL,
+    [idGen]    INT           DEFAULT ((0)) NULL,
+    PRIMARY KEY CLUSTERED ([Uid] ASC)
+);
+
+CREATE TABLE [dbo].[Book] (
+    [bid]            INT           DEFAULT ((0)) NOT NULL,
+    [bookNo]         VARCHAR (10)  NOT NULL,
+    [bTitle]         VARCHAR (100) NULL,
+    [bPub]           VARCHAR (100) NULL,
+    [bType]          VARCHAR (50)  NULL,
+    [bClasification] VARCHAR (10)  NOT NULL,
+    [copies]         INT           DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_Book] PRIMARY KEY CLUSTERED ([bookNo] ASC)
+);
+
+CREATE TABLE [dbo].[Reservation] (
+    [TimeStamp] INT          NOT NULL,
+    [UserId]    VARCHAR (50) NULL,
+    [BookId]    VARCHAR (10) NULL,
+    PRIMARY KEY CLUSTERED ([TimeStamp] ASC),
+    CONSTRAINT [FK_Reservation_ToTable] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([Uid]),
+    CONSTRAINT [FK_Reservation_ToTable_1] FOREIGN KEY ([BookId]) REFERENCES [dbo].[Book] ([bookNo])
+);
+
+CREATE TABLE [dbo].[Borrow] (
+    [userID] VARCHAR (50) DEFAULT ((0)) NOT NULL,
+    [bookId] VARCHAR (10) DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([bookId] ASC, [userID] ASC),
+    CONSTRAINT [FK_Borrow_ToTable] FOREIGN KEY ([userID]) REFERENCES [dbo].[User] ([Uid]),
+    CONSTRAINT [FK_Borrow_ToTable_1] FOREIGN KEY ([bookId]) REFERENCES [dbo].[Book] ([bookNo])
+);
+
+

@@ -1,0 +1,41 @@
+**Make sure to install Visual studio 2013. If you are using 2010/2012 you can follow the steps given in the report's technical documentation to open project in VS 2010/2012
+But it is easy to install VS 2013 and open it.
+
+Step 1:
+Install MS SQL server.
+Create sql server instance with below name- meshboy\mssqlserver3 
+
+Data Source=MESHBOY\MSSQLSEREVER3;Initial Catalog=Sarasavi;Integrated Security=True
+
+Step 2:
+
+Go to visual studio server explorer and make server connection.
+
+Step 3:
+
+Right click on tables folder inside the Data connections tress.
+
+Step 4:
+
+Click add new query, after right clicking on tables folder.
+
+Step 5:
+
+then Copy and paste the Attached sqlDB file's Queries into it.
+
+Step 6:
+
+Click visual studio execute query button. this will successfully create the database and you are ready to go with project. Run it!
+____________________________________________________________________________________________________________
+
+
+*** If you are creating your own server with own names then you have to change the below code sgment in API every class.
+
+
+ using (SqlConnection c = new SqlConnection("Data Source=MESHBOY\\MSSQLSEREVER3;Initial Catalog=Sarasavi;Integrated Security=True;Pooling=False"))
+
+1.you have to change the "Data Source" into your server name
+2. you have to change the "Initial catalog" into your prefered DB name. But i recomend you to keep DB name as 'Sarasavi' as it is. 
+_____________________________________________________________________________________________________________
+
+** SQL DB Queries attached with this document also. (Named as sqlDB.txt)
